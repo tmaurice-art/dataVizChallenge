@@ -61,3 +61,28 @@ plt.tight_layout()
 plt.savefig("analysis_2010_vs_2021.png", dpi=150, bbox_inches="tight")
 print("\nSaved comparison figure: analysis_2010_vs_2021.png")
 plt.close()
+# Stage 2: Curation of Content
+# Aggregate data to get average runs per stadium
+
+# Process 2010 data
+avgDF_2010 = (df2010
+    .assign(totalRuns = lambda df: df.homeScore + df.visScore)
+    .assign(totalHR = lambda df: df.homeHR + df.visHR)
+    .drop(columns = ['date', 'visiting'])
+    .groupby(['home'], as_index=False)
+    .mean()
+)
+
+# Process 2021 data
+avgDF_2021 = (df2021
+    .assign(totalRuns = lambda df: df.homeScore + df.visScore)
+    .assign(totalHR = lambda df: df.homeHR + df.visHR)
+    .drop(columns = ['date', 'visiting'])
+    .groupby(['home'], as_index=False)
+    .mean()
+)
+
+print("2010 Stadium Averages (Top 5):")
+print(avgDF_2010.head())
+print("\n2021 Stadium Averages (Top 5):")
+print(avgDF_2021.head())
