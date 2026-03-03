@@ -180,3 +180,14 @@ print(f"\nSummary Statistics for 2010:")
 print(f"Colorado (COL) average runs per game: {colorado_runs:.2f}")
 print(f"League average runs per game: {avgDF_2010_sorted.totalRuns.mean():.2f}")
 print(f"Colorado is {((colorado_runs / avgDF_2010_sorted.totalRuns.mean()) - 1) * 100:.1f}% above league average")
+# Advanced Object-Oriented Techniques
+# Create a comprehensive comparison visualization
+
+# Prepare data for comparison
+comparison_data = pd.merge(
+    avgDF_2010[['home', 'totalRuns']].rename(columns={'totalRuns': 'runs_2010'}),
+    avgDF_2021[['home', 'totalRuns']].rename(columns={'totalRuns': 'runs_2021'}),
+    on='home', how='inner'
+)
+
+## TODO: Create the visualization
