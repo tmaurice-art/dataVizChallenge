@@ -159,7 +159,7 @@ Our purpose is to investigate whether Coors Field in Denver, Colorado is truly t
 ## 🤔 Discussion Questions: Stage 1 - Declaration of Purpose
 
 **Question 1: Hypothesis Formation**
-- Why might high altitude affect baseball performance? When the ball is in the air after being hit by a batter, it can be in the air for longer and travel further do to the lack of resistance in the air from that altitude.  Is Coors Field affected by high altitude?  
+- Why might high altitude affect baseball performance? <br> When the ball is in the air after being hit by a batter, it can be in the air for longer and travel further do to the lack of resistance in the air from that altitude.  Is Coors Field affected by high altitude? <br>  
 :::
 
 ## Stage 2: Curation of Content
