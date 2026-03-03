@@ -86,3 +86,97 @@ print("2010 Stadium Averages (Top 5):")
 print(avgDF_2010.head())
 print("\n2021 Stadium Averages (Top 5):")
 print(avgDF_2021.head())
+# Stage 3: Structuring of Visual Mappings
+# Explore different geometries and aesthetics
+
+# Sort data for better visualization
+avgDF_2010_sorted = avgDF_2010.sort_values('totalRuns', ascending=True)
+
+# Create figure with subplots to compare approaches
+fig, axes = plt.subplots(2, 2, figsize=(8, 9))
+
+# Approach 1: Scatter plot (not ideal for categorical data)
+axes[0,0].scatter(avgDF_2010_sorted.home, avgDF_2010_sorted.totalRuns)
+axes[0,0].set_title("Approach 1: Scatter Plot")
+axes[0,0].set_xlabel("Stadium")
+axes[0,0].set_ylabel("Average Runs")
+axes[0,0].tick_params(axis='x', labelsize=9)
+
+# Approach 2: Horizontal bar chart (better for categorical data)
+axes[0,1].barh(avgDF_2010_sorted.home, avgDF_2010_sorted.totalRuns)
+axes[0,1].set_title("Approach 2: Horizontal Bar Chart")
+axes[0,1].set_xlabel("Average Runs")
+axes[0,1].set_ylabel("Stadium")
+axes[0,1].tick_params(axis='y', labelsize=9)
+
+# Approach 3: Vertical bar chart
+axes[1,0].bar(avgDF_2010_sorted.home, avgDF_2010_sorted.totalRuns)
+axes[1,0].set_title("Approach 3: Vertical Bar Chart")
+axes[1,0].set_xlabel("Stadium")
+axes[1,0].set_ylabel("Average Runs")
+axes[1,0].tick_params(axis='x', rotation=45, labelsize=9)
+
+# Approach 4: Highlight Colorado
+colorado_colors = ["darkorchid" if stadium == "COL" else "lightgrey" 
+                   for stadium in avgDF_2010_sorted.home]
+axes[1,1].barh(avgDF_2010_sorted.home, avgDF_2010_sorted.totalRuns, color=colorado_colors)
+axes[1,1].set_title("Approach 4: Highlight Colorado")
+axes[1,1].set_xlabel("Average Runs")
+axes[1,1].set_ylabel("Stadium")
+axes[1,1].tick_params(axis='y', labelsize=9)
+
+plt.tight_layout()
+plt.show()
+# Stage 4: Formatting for Your Audience
+# Create a professional, publication-ready visualization
+
+# Set style for professional appearance
+plt.style.use("seaborn-v0_8-whitegrid")
+
+# Create the main visualization
+fig, ax = plt.subplots(figsize=(8, 6))
+
+# Create color array for highlighting Colorado
+colorado_colors = ["darkorchid" if stadium == "COL" else "lightgrey" 
+                   for stadium in avgDF_2010_sorted.home]
+
+# Create horizontal bar chart
+bars = ax.barh(avgDF_2010_sorted.home, avgDF_2010_sorted.totalRuns, color=colorado_colors)
+
+# Add title and labels
+ax.set_title("Colorado (COL) is the Most Run-Friendly Ballpark in 2010", 
+             fontsize=16, fontweight='bold', pad=20)
+ax.set_xlabel("Average Runs Per Game", fontsize=12)
+ax.set_ylabel("Stadium (Home Team)", fontsize=12)
+
+# Add legend
+colorado_bar = plt.Rectangle((0,0),1,1, color="darkorchid", label="Colorado Rockies")
+other_bar = plt.Rectangle((0,0),1,1, color="lightgrey", label="Other Stadiums")
+ax.legend(handles=[colorado_bar, other_bar], loc='lower right', frameon=True)
+
+# Add annotation for Colorado
+colorado_index = avgDF_2010_sorted[avgDF_2010_sorted.home == "COL"].index[0]
+colorado_runs = avgDF_2010_sorted[avgDF_2010_sorted.home == "COL"]["totalRuns"].iloc[0]
+ax.annotate(f"COL: {colorado_runs:.2f} runs/game", 
+            xy=(colorado_runs, colorado_index), 
+            xytext=(colorado_runs + 0.5, colorado_index),
+            arrowprops=dict(arrowstyle='->', color='darkorchid', lw=2),
+            fontsize=10, fontweight='bold', color='darkorchid')
+
+# Set x-axis to start from 0 for better comparison
+ax.set_xlim(0, max(avgDF_2010_sorted.totalRuns) * 1.1)
+
+# Smaller font for stadium (y-axis) tick labels
+ax.tick_params(axis='y', labelsize=9)
+
+# Add grid for easier reading
+ax.grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+
+# Print summary statistics
+print(f"\nSummary Statistics for 2010:")
+print(f"Colorado (COL) average runs per game: {colorado_runs:.2f}")
+print(f"League average runs per game: {avgDF_2010_sorted.totalRuns.mean():.2f}")
+print(f"Colorado is {((colorado_runs / avgDF_2010_sorted.totalRuns.mean()) - 1) * 100:.1f}% above league average")
