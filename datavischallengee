@@ -347,8 +347,8 @@ print(f"Colorado is {((colorado_runs / avgDF_2010_sorted.totalRuns.mean()) - 1) 
 ## 🤔 Discussion Questions: Stage 4 - Formatting for Your Audience
 
 **Question 1: Professional Formatting**
-- What elements make this visualization suitable for a business presentation?
-- Is the annotation on the visualization helpful?  Can you fix its placement?
+- What elements make this visualization suitable for a business presentation? It has a clear title with labels for the units. The legend exaplins everything that you would be looking for on the graph and is very easy to read.
+- Is the annotation on the visualization helpful? I believe that this is helpful and precisely conveys the message of the chart. - Can you fix its placement? I do not know how. But maybe changing the shape of the arrow to a start or moving it up closer to the Colorodo bar.
 
 :::
 
@@ -384,7 +384,7 @@ comparison_data = pd.merge(
 - Create a two-facet visualization that shows the total runs for 2010 and 2021 for each stadium in a single figure.  Highlight Colorado in the visualization.
 
 **Question 2: Explanation of the Visualization**
-- Ask AI To Add A Paragraph Here To Explain The Visualization
+- Ask AI To Add A Paragraph Here To Explain The Visualization: This two‑panel figure compares average runs per game by stadium in 2010 (left) and 2021 (right), with each horizontal bar representing one ballpark and Colorado highlighted in purple. By keeping the stadium order and scales consistent across both subplots, we can easily see how Coors Field compares to the rest of the league in each season and whether its run environment changed relative to other parks. The visualization shows not only that Colorado is among the most run‑friendly parks, but also whether other stadiums have become more or less offensive over time.
 - Does AI come to the right conclusion?  If not, why not?
 :::
 

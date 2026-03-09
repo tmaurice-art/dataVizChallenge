@@ -191,3 +191,37 @@ comparison_data = pd.merge(
 )
 
 ## TODO: Create the visualization
+# Prepare colors for highlighting Colorado
+comparison_data_sorted = comparison_data.sort_values('runs_2010', ascending=True)
+colors_2010 = ["darkorchid" if team == "COL" else "lightgrey"
+               for team in comparison_data_sorted['home']]
+colors_2021 = ["darkorchid" if team == "COL" else "lightgrey"
+               for team in comparison_data_sorted['home']]
+
+fig, axes = plt.subplots(1, 2, figsize=(12, 6), sharey=True)
+
+# 2010 subplot
+axes[0].barh(comparison_data_sorted['home'], comparison_data_sorted['runs_2010'],
+             color=colors_2010)
+axes[0].set_title("Average Runs per Game by Stadium – 2010", fontsize=12, fontweight="bold")
+axes[0].set_xlabel("Average Runs per Game")
+axes[0].set_ylabel("Stadium (Home Team)")
+axes[0].tick_params(axis='y', labelsize=8)
+
+# 2021 subplot (same stadium order)
+axes[1].barh(comparison_data_sorted['home'], comparison_data_sorted['runs_2021'],
+             color=colors_2021)
+axes[1].set_title("Average Runs per Game by Stadium – 2021", fontsize=12, fontweight="bold")
+axes[1].set_xlabel("Average Runs per Game")
+axes[1].tick_params(axis='y', labelsize=8)
+
+# Shared legend
+colorado_patch = plt.Rectangle((0, 0), 1, 1, color="darkorchid", label="Colorado Rockies (COL)")
+other_patch = plt.Rectangle((0, 0), 1, 1, color="lightgrey", label="Other Stadiums")
+fig.legend(handles=[colorado_patch, other_patch], loc="lower center", ncol=2)
+
+fig.suptitle("Coors Field vs. Other MLB Stadiums: 2010 vs 2021",
+             fontsize=14, fontweight="bold", y=0.98)
+
+fig.tight_layout(rect=[0, 0.05, 1, 0.95])
+plt.show()
