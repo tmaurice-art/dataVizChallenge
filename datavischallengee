@@ -161,7 +161,7 @@ Our purpose is to investigate whether Coors Field in Denver, Colorado is truly t
 **Question 1: Hypothesis Formation**
 - Why might high altitude affect baseball performance?<br>
 When the ball is in the air after being hit by a batter, it can be in the air for longer and travel further do to the lack of resistance in the air from that altitude. <br>
-Is Coors Field affected by high altitude? Yes.
+- Is Coors Field affected by high altitude? Yes.
 :::
 
 ## Stage 2: Curation of Content
@@ -205,7 +205,7 @@ print(avgDF_2021.head())
 ## 🤔 Discussion Questions: Stage 2 - Curation of Content
 
 **Question 1: Data Aggregation Strategy**
-- How many games are in the dataset? Why do we aggregate individual games into stadium averages before we start the visualization process?
+- How many games are in the dataset? There are probably over a thousand games within this set that includes every stadium and many games within them. - Why do we aggregate individual games into stadium averages before we start the visualization process? Since data from the games can be random put all together, finding an average would make the data easier to visualize.
 :::
 
 ## Stage 3: Structuring of Visual Mappings
@@ -268,12 +268,13 @@ plt.show()
 ## 🤔 Discussion Questions: Stage 3 - Structuring of Visual Mappings
 
 **Question 1: Geometry Choices**
-- Why is a horizontal bar chart better than a scatter plot for this data?
-- When would you choose a vertical bar chart over horizontal?
+- Why is a horizontal bar chart better than a scatter plot for this data? The horizontal bar chart makes the numbers easier to read and if you want to compare different stadiums it allows you to identify them as well.
+- When would you choose a vertical bar chart over horizontal? The vertical bars do not always look very good when  comparing a large set of data. It also is mostly used better when showing some type of progression. Going left to right would make understanding the chart a little easier 
 
 **Question 2: Aesthetic Mappings**
-- What does the color highlighting accomplish in Approach 4?
-- How does position (x/y) compare to color for encoding data?
+- What does the color highlighting accomplish in Approach 4? When you look at the graph the first thing you will notice is the highlighted area, which is Coors field, which is what the graph wants you to focus.
+- How does position (x/y) compare to color for encoding data? It is usually the most effective way to encode quantitative values, because viewers can accurately compare lengths and positions. Color is a powerful secondary encoding for grouping or emphasis, but it is less precise for reading exact magnitudes.
+
 
 :::
 
